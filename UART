@@ -1,2 +1,17 @@
 串口发送模块
-模块设计与实现
+1.2模块设计与实现
+|名称|功能描述|
+|*|*|
+1.3波特率时钟生成模块设计
+1.4数据输出模块设计
+    通过对波特率始终进行计数，来确定发送的循环状态。
+    //bps counter
+    always@(posedge clk or posedge reset)
+    if(reset) 
+        bps_cnt <= 4'd0;
+    else if(bps_cnt == 4'd11)
+        bps_cnt <= 4'd0;
+    else if(bps_clk)
+        bps_cnt <= bps_cnt + 1'b1;
+    else
+        bps_cnt <= bps_cnt;
